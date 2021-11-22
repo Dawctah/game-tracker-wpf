@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31515.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameTrackerWPF", "GameTrackerWPF.csproj", "{4C57860D-41D8-4E7E-A4EC-58B3792E6C8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameInformation", "..\GameInformation\GameInformation.csproj", "{D98BB545-EC79-4144-9989-3B544B9BAC26}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4C57860D-41D8-4E7E-A4EC-58B3792E6C8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C57860D-41D8-4E7E-A4EC-58B3792E6C8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C57860D-41D8-4E7E-A4EC-58B3792E6C8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C57860D-41D8-4E7E-A4EC-58B3792E6C8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D98BB545-EC79-4144-9989-3B544B9BAC26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D98BB545-EC79-4144-9989-3B544B9BAC26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D98BB545-EC79-4144-9989-3B544B9BAC26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D98BB545-EC79-4144-9989-3B544B9BAC26}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7F7AA546-FA04-4AD9-BC23-85439D9C55AF}
+	EndGlobalSection
+EndGlobal

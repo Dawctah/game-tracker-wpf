@@ -1,0 +1,7 @@
+**/bin
+**/obj
+**/dist
+**/.vscode
+**/.vs
+note.txt
+.code-workspace
