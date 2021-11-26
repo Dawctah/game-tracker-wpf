@@ -24,6 +24,31 @@ namespace GameTrackerWPF
             gameData.GamesToPlay.Sort((g1, g2) => g1.Priority.CompareTo(g2.Priority));
         }
 
+        public static List<Game> Bump(List<Game> games, Game bumpedGame, bool up = true)
+        {
+            for (int k = 0; k < games.Count; k++)
+            {
+                if (games[k] == bumpedGame)
+                {
+                    if (k != 0 && k != games.Count - 1)
+                    {
+                        if (up)
+                            Swap(ref games, k, k - 1);
+                        else
+                            Swap(ref games, k, k + 1);
+                    }
+                    else if (k == 0 && !up)
+                        Swap(ref games, k, k + 1);
+                    else if (k == games.Count - 1 && up)
+                        Swap(ref games, k, k - 1);
+
+                    break;
+                }
+            }
+
+            return games;
+        }
+
         public static string FindName(List<Game> search, string current, TextBox textBox)
         {
             foreach (Game g in search)
@@ -76,6 +101,26 @@ namespace GameTrackerWPF
             {
                 formatter.Serialize(stream, gameData);
             }
+        }
+
+        public static void Swap(ref List<Game> games, int index1, int index2)
+        {
+            Game g1 = games[index1];
+            Game g2 = games[index2];
+
+            if (g1.Priority > g2.Priority)
+            {
+                g1.Priority--;
+                g2.Priority++;
+            }
+            else if (g1.Priority < g2.Priority)
+            {
+                g1.Priority++;
+                g2.Priority--;
+            }
+
+            games[index1] = g2;
+            games[index2] = g1;
         }
 
         public static void UpdateCompleteGameButton(TextBlock textBlock, GameData gameData)

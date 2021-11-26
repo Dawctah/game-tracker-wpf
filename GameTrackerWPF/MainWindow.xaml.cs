@@ -237,6 +237,8 @@ namespace GameTrackerWPF
             }
             finally
             {
+                BumpDownButton.Visibility = Visibility.Hidden;
+                BumpUpButton.Visibility = Visibility.Hidden;
                 Utility.RefreshGamesListBox(gameData.GamesToPlay, GamesListBox, CompleteTextBlock, ToPlayCount, CompletedCount, ref gameData);
                 Utility.RefreshGamesListBox(gameData.CompletedGames, CompletedListBox, CompleteTextBlock, ToPlayCount, CompletedCount, ref gameData);
             }
@@ -248,6 +250,27 @@ namespace GameTrackerWPF
                 Directory.CreateDirectory(directory);
 
             Process.Start(directory);
+        }
+
+        private void GamesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (GamesListBox.SelectedItem != null)
+            {
+                BumpUpButton.Visibility = Visibility.Visible;
+                BumpDownButton.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void BumpUpButton_Click(object sender, RoutedEventArgs e)
+        {
+            Utility.Bump(gameData.GamesToPlay, GamesListBox.SelectedItem as Game);
+            Utility.RefreshGamesListBox(gameData.GamesToPlay, GamesListBox, CompleteTextBlock, ToPlayCount, CompletedCount, ref gameData);
+        }
+
+        private void BumpDownButton_Click(object sender, RoutedEventArgs e)
+        {
+            Utility.Bump(gameData.GamesToPlay, GamesListBox.SelectedItem as Game, false);
+            Utility.RefreshGamesListBox(gameData.GamesToPlay, GamesListBox, CompleteTextBlock, ToPlayCount, CompletedCount, ref gameData);
         }
     }
 }
