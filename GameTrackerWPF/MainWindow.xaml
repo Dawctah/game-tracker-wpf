@@ -11,7 +11,9 @@
             <ColumnDefinition Width="103*"/>
             <ColumnDefinition Width="48*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Games to Play:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="305" Height="29"></Label>
+        <Label Content="Games to Play:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="262" Height="29"></Label>
+        <Label Name="ToPlayCount" Content="9999" HorizontalAlignment="Left" Margin="272,10,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Width="43" Height="29"></Label>
+        <Label Name="CompletedCount" Content="9999" HorizontalAlignment="Left" Margin="243,6,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Width="43" Height="29" Grid.Column="1"></Label>
         <ListBox x:Name="GamesListBox" HorizontalAlignment="Left" Height="370" Margin="10,39,0,0" VerticalAlignment="Top" Width="305" MouseDoubleClick="GamesListBox_MouseDoubleClick"/>
         <ListBox x:Name="CompletedListBox" HorizontalAlignment="Left" Height="369" Margin="614,40,0,0" VerticalAlignment="Top" Width="305" Grid.ColumnSpan="2"/>
         <Button Name="AddGameButton" Content="Add Game" HorizontalAlignment="Left" Margin="320,74,0,0" VerticalAlignment="Top" Width="142" Height="29" Click="AddGameButton_Click"/>
@@ -20,7 +22,7 @@
             <TextBlock Margin="0,0,0,0" Name="CompleteTextBlock" HorizontalAlignment="Left" VerticalAlignment="Top" Width="132" Height="33" TextWrapping="WrapWithOverflow" TextAlignment="Center"/>
         </Button>
         <Button Name="CreateBackupButton" Content="Create Backup" HorizontalAlignment="Left" Margin="320,346,0,0" VerticalAlignment="Top" Width="142" Height="29" Click="CreateBackupButton_Click"/>
-        <Label Content="Games Completed Through this Program:" HorizontalAlignment="Left" Margin="615,6,0,0" VerticalAlignment="Top" Width="305" Height="29" Grid.ColumnSpan="2"/>
+        <Label Content="Games Completed Through this Program:" HorizontalAlignment="Left" Margin="615,6,0,0" VerticalAlignment="Top" Width="262" Height="29" Grid.ColumnSpan="2"/>
         <Button x:Name="ClearDataButton" Content="Clear Data" HorizontalAlignment="Left" Margin="320,380,0,0" VerticalAlignment="Top" Width="142" Height="29" Click="ClearDataButton_Click" />
         <Button x:Name="AutoSetPrio" Content="Auto-set Priorities" HorizontalAlignment="Left" Margin="320,142,0,0" VerticalAlignment="Top" Width="142" Height="29" Click="AutoSetPrio_Click" />
         <TextBlock HorizontalAlignment="Left" Margin="467,129,0,0" Text="Automatically set PRIORITY for all games from 1 to 10 in order" VerticalAlignment="Top" Height="59" Width="142" TextWrapping="WrapWithOverflow"/>

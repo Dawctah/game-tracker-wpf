@@ -49,11 +49,14 @@ namespace GameTrackerWPF
             return result;
         }
 
-        public static void RefreshGamesListBox(List<Game> games, ListBox listBox, TextBlock textBlock, ref GameData gameData)
+        public static void RefreshGamesListBox(List<Game> games, ListBox listBox, TextBlock textBlock, Label toPlay, Label completed, ref GameData gameData)
         {
             listBox.Items.Clear();
             foreach (Game g in games)
                 listBox.Items.Add(g);
+
+            toPlay.Content = gameData.GamesToPlay.Count;
+            completed.Content = gameData.CompletedGames.Count;
 
             UpdateCompleteGameButton(textBlock, gameData);
         }

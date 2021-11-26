@@ -70,7 +70,7 @@ namespace GameTrackerWPF
             {
                 Utility.AddGame(game, ref gameData);
 
-                Utility.RefreshGamesListBox(gameData.GamesToPlay, GamesListBox, CompleteTextBlock, ref gameData);
+                Utility.RefreshGamesListBox(gameData.GamesToPlay, GamesListBox, CompleteTextBlock, ToPlayCount, CompletedCount, ref gameData);
                 Utility.UpdateCompleteGameButton(CompleteTextBlock, gameData);
             }
         }
@@ -83,7 +83,7 @@ namespace GameTrackerWPF
                 gameData.GamesToPlay[k].Priority = k + 1;
             }
 
-            Utility.RefreshGamesListBox(gameData.GamesToPlay, GamesListBox, CompleteTextBlock, ref gameData);
+            Utility.RefreshGamesListBox(gameData.GamesToPlay, GamesListBox, CompleteTextBlock, ToPlayCount, CompletedCount, ref gameData);
         }
 
         private void ClearDataButton_Click(object sender, RoutedEventArgs e)
@@ -92,8 +92,8 @@ namespace GameTrackerWPF
             {
                 File.Delete(FilePath);
                 gameData = new GameData();
-                Utility.RefreshGamesListBox(gameData.GamesToPlay, GamesListBox, CompleteTextBlock, ref gameData);
-                Utility.RefreshGamesListBox(gameData.CompletedGames, CompletedListBox, CompleteTextBlock, ref gameData);
+                Utility.RefreshGamesListBox(gameData.GamesToPlay, GamesListBox, CompleteTextBlock, ToPlayCount, CompletedCount, ref gameData);
+                Utility.RefreshGamesListBox(gameData.CompletedGames, CompletedListBox, CompleteTextBlock, ToPlayCount, CompletedCount, ref gameData);
             }
         }
 
@@ -123,7 +123,7 @@ namespace GameTrackerWPF
                     }
                 }
 
-                Utility.RefreshGamesListBox(gameData.GamesToPlay, GamesListBox, CompleteTextBlock, ref gameData);
+                Utility.RefreshGamesListBox(gameData.GamesToPlay, GamesListBox, CompleteTextBlock, ToPlayCount, CompletedCount, ref gameData);
             }
             catch
             {
@@ -170,7 +170,7 @@ namespace GameTrackerWPF
                 GamesListBox.Items[placement] = selection;
 
                 gameData.GamesToPlay.Sort((g1, g2) => g1.Priority.CompareTo(g2.Priority));
-                Utility.RefreshGamesListBox(gameData.GamesToPlay, GamesListBox, CompleteTextBlock, ref gameData);
+                Utility.RefreshGamesListBox(gameData.GamesToPlay, GamesListBox, CompleteTextBlock, ToPlayCount, CompletedCount, ref gameData);
             }
         }
 
@@ -207,7 +207,10 @@ namespace GameTrackerWPF
             if (selection != null)
             {
                 if (MessageBox.Show($"Are you sure you want to remove {selection.Name}?", "Remove Game?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
                     Utility.RemoveGame(selection, GamesListBox, CompleteTextBlock, ref gameData);
+                    Utility.RefreshGamesListBox(gameData.GamesToPlay, GamesListBox, CompleteTextBlock, ToPlayCount, CompletedCount, ref gameData);
+                }
             }
         }
 
@@ -232,9 +235,11 @@ namespace GameTrackerWPF
             {
                 MessageBox.Show("Previously saved game data not loaded. You may not have data to load.", "Error Loading Data");
             }
-
-            Utility.RefreshGamesListBox(gameData.GamesToPlay, GamesListBox, CompleteTextBlock, ref gameData);
-            Utility.RefreshGamesListBox(gameData.CompletedGames, CompletedListBox, CompleteTextBlock, ref gameData);
+            finally
+            {
+                Utility.RefreshGamesListBox(gameData.GamesToPlay, GamesListBox, CompleteTextBlock, ToPlayCount, CompletedCount, ref gameData);
+                Utility.RefreshGamesListBox(gameData.CompletedGames, CompletedListBox, CompleteTextBlock, ToPlayCount, CompletedCount, ref gameData);
+            }
         }
 
         private void OpenBackupsFolder_Click(object sender, RoutedEventArgs e)
