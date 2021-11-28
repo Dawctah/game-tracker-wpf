@@ -86,6 +86,18 @@ namespace GameTrackerWPF
             Utility.RefreshGamesListBox(gameData.GamesToPlay, GamesListBox, CompleteTextBlock, ToPlayCount, CompletedCount, ref gameData);
         }
 
+        private void Bump(bool up = true)
+        {
+            Game selection = GamesListBox.SelectedItem as Game;
+            Utility.Bump(gameData.GamesToPlay, selection, up);
+            Utility.RefreshGamesListBox(gameData.GamesToPlay, GamesListBox, CompleteTextBlock, ToPlayCount, CompletedCount, ref gameData);
+            GamesListBox.SelectedItem = selection;
+        }
+
+        private void BumpUpButton_Click(object sender, RoutedEventArgs e) => Bump();
+
+        private void BumpDownButton_Click(object sender, RoutedEventArgs e) => Bump(false);
+
         private void ClearDataButton_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show(string.Format("Delete save data (this cannot be recovered?"), "Remove Game?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
@@ -259,18 +271,6 @@ namespace GameTrackerWPF
                 BumpUpButton.Visibility = Visibility.Visible;
                 BumpDownButton.Visibility = Visibility.Visible;
             }
-        }
-
-        private void BumpUpButton_Click(object sender, RoutedEventArgs e)
-        {
-            Utility.Bump(gameData.GamesToPlay, GamesListBox.SelectedItem as Game);
-            Utility.RefreshGamesListBox(gameData.GamesToPlay, GamesListBox, CompleteTextBlock, ToPlayCount, CompletedCount, ref gameData);
-        }
-
-        private void BumpDownButton_Click(object sender, RoutedEventArgs e)
-        {
-            Utility.Bump(gameData.GamesToPlay, GamesListBox.SelectedItem as Game, false);
-            Utility.RefreshGamesListBox(gameData.GamesToPlay, GamesListBox, CompleteTextBlock, ToPlayCount, CompletedCount, ref gameData);
         }
     }
 }
