@@ -197,10 +197,10 @@ namespace GameTrackerWPF
                 return;
 
             string result = "Games to Play:\n";
-            result = Utility.FindName(gameData.GamesToPlay, result, GamesSearchBox);
+            result = Utility.FindName(gameData.GamesToPlay, result, GamesSearchBox.Text);
 
             result += "\nCompleted Games:\n";
-            result = Utility.FindName(gameData.CompletedGames, result, GamesSearchBox);
+            result = Utility.FindName(gameData.CompletedGames, result, GamesSearchBox.Text);
 
             MessageBox.Show(result, "Results for " + GamesSearchBox.Text + ":");
 
