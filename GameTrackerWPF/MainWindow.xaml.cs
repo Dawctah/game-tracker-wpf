@@ -70,7 +70,7 @@ namespace GameTrackerWPF
             {
                 Utility.AddGame(game, ref gameData);
 
-                Utility.RefreshGamesListBox(gameData.GamesToPlay, GamesListBox, CompleteTextBlock, ToPlayCount, CompletedCount, ref gameData);
+                RefreshGamesListBox(gameData.GamesToPlay, GamesListBox);
                 Utility.UpdateCompleteGameButton(CompleteTextBlock, gameData);
             }
         }
@@ -83,14 +83,14 @@ namespace GameTrackerWPF
                 gameData.GamesToPlay[k].Priority = k + 1;
             }
 
-            Utility.RefreshGamesListBox(gameData.GamesToPlay, GamesListBox, CompleteTextBlock, ToPlayCount, CompletedCount, ref gameData);
+            RefreshGamesListBox(gameData.GamesToPlay, GamesListBox);
         }
 
         private void Bump(bool up = true)
         {
             Game selection = GamesListBox.SelectedItem as Game;
             Utility.Bump(gameData.GamesToPlay, selection, up);
-            Utility.RefreshGamesListBox(gameData.GamesToPlay, GamesListBox, CompleteTextBlock, ToPlayCount, CompletedCount, ref gameData);
+            RefreshGamesListBox(gameData.GamesToPlay, GamesListBox);
             GamesListBox.SelectedItem = selection;
         }
 
@@ -104,8 +104,8 @@ namespace GameTrackerWPF
             {
                 File.Delete(FilePath);
                 gameData = new GameData();
-                Utility.RefreshGamesListBox(gameData.GamesToPlay, GamesListBox, CompleteTextBlock, ToPlayCount, CompletedCount, ref gameData);
-                Utility.RefreshGamesListBox(gameData.CompletedGames, CompletedListBox, CompleteTextBlock, ToPlayCount, CompletedCount, ref gameData);
+                RefreshGamesListBox(gameData.GamesToPlay, GamesListBox);
+                RefreshGamesListBox(gameData.CompletedGames, CompletedListBox);
             }
         }
 
@@ -135,7 +135,7 @@ namespace GameTrackerWPF
                     }
                 }
 
-                Utility.RefreshGamesListBox(gameData.GamesToPlay, GamesListBox, CompleteTextBlock, ToPlayCount, CompletedCount, ref gameData);
+                RefreshGamesListBox(gameData.GamesToPlay, GamesListBox);
             }
             catch
             {
@@ -182,7 +182,7 @@ namespace GameTrackerWPF
                 GamesListBox.Items[placement] = selection;
 
                 gameData.GamesToPlay.Sort((g1, g2) => g1.Priority.CompareTo(g2.Priority));
-                Utility.RefreshGamesListBox(gameData.GamesToPlay, GamesListBox, CompleteTextBlock, ToPlayCount, CompletedCount, ref gameData);
+                RefreshGamesListBox(gameData.GamesToPlay, GamesListBox);
             }
         }
 
@@ -212,6 +212,18 @@ namespace GameTrackerWPF
             GamesSearchBox.Text = "Search games...";
         }
 
+        public void RefreshGamesListBox(List<Game> games, ListBox listBox)
+        {
+            listBox.Items.Clear();
+            foreach (Game g in games)
+                listBox.Items.Add(g);
+
+            ToPlayCount.Content = gameData.GamesToPlay.Count;
+            CompletedCount.Content = gameData.CompletedGames.Count;
+
+            Utility.UpdateCompleteGameButton(CompleteTextBlock, gameData);
+        }
+
         private void RemoveGameButton_Click(object sender, RoutedEventArgs e)
         {
             Game selection = GamesListBox.SelectedItem as Game;
@@ -221,7 +233,7 @@ namespace GameTrackerWPF
                 if (MessageBox.Show($"Are you sure you want to remove {selection.Name}?", "Remove Game?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                     Utility.RemoveGame(selection, GamesListBox, CompleteTextBlock, ref gameData);
-                    Utility.RefreshGamesListBox(gameData.GamesToPlay, GamesListBox, CompleteTextBlock, ToPlayCount, CompletedCount, ref gameData);
+                    RefreshGamesListBox(gameData.GamesToPlay, GamesListBox);
                 }
             }
         }
@@ -251,8 +263,8 @@ namespace GameTrackerWPF
             {
                 BumpDownButton.Visibility = Visibility.Hidden;
                 BumpUpButton.Visibility = Visibility.Hidden;
-                Utility.RefreshGamesListBox(gameData.GamesToPlay, GamesListBox, CompleteTextBlock, ToPlayCount, CompletedCount, ref gameData);
-                Utility.RefreshGamesListBox(gameData.CompletedGames, CompletedListBox, CompleteTextBlock, ToPlayCount, CompletedCount, ref gameData);
+                RefreshGamesListBox(gameData.GamesToPlay, GamesListBox);
+                RefreshGamesListBox(gameData.CompletedGames, CompletedListBox);
             }
         }
 
