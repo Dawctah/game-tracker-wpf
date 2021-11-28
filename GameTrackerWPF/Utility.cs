@@ -12,18 +12,36 @@ namespace GameTrackerWPF
 {
     public static class Utility
     {
+        /// <summary>
+        /// Add a game to the list of completed games.
+        /// </summary>
+        /// <param name="listBox">The list box to update.</param>
+        /// <param name="game">The game to add.</param>
+        /// <param name="gameData">The game data to alter.</param>
         public static void AddCompleteGame(ListBox listBox, Game game, ref GameData gameData)
         {
             listBox.Items.Add(game);
             gameData.CompletedGames.Add(game);
         }
 
+        /// <summary>
+        /// Add a game to the To-Play list.
+        /// </summary>
+        /// <param name="game">The game to add.</param>
+        /// <param name="gameData">The game data to alter.</param>
         public static void AddGame(Game game, ref GameData gameData)
         {
             gameData.GamesToPlay.Add(game);
             gameData.GamesToPlay.Sort((g1, g2) => g1.Priority.CompareTo(g2.Priority));
         }
 
+        /// <summary>
+        /// Bump a game up or down and adjust priority as needed.
+        /// </summary>
+        /// <param name="games">The list of games to reorder.</param>
+        /// <param name="bumpedGame">The game that was bumped.</param>
+        /// <param name="up">Which direction to bump.</param>
+        /// <returns>The reordered list of games.</returns>
         public static List<Game> Bump(List<Game> games, Game bumpedGame, bool up = true)
         {
             for (int k = 0; k < games.Count; k++)
@@ -49,17 +67,30 @@ namespace GameTrackerWPF
             return games;
         }
 
-        public static string FindName(List<Game> search, string current, TextBox textBox)
+        /// <summary>
+        /// Find games in a list to see if it is there.
+        /// </summary>
+        /// <param name="games">The list to search.</param>
+        /// <param name="current">The current string.</param>
+        /// <param name="search">The string to check.</param>
+        /// <returns>The games that were found.</returns>
+        public static string FindName(List<Game> games, string current, string search)
         {
-            foreach (Game g in search)
+            // Loop through all games to find all games with the desired search.
+            foreach (Game g in games)
             {
-                if (g.Name.ToLower().Contains(textBox.Text.ToLower()))
+                if (g.Name.ToLower().Contains(search.ToLower()))
                     current += g.ToString() + "\n";
             }
 
             return current;
         }
 
+        /// <summary>
+        /// Load the application data.
+        /// </summary>
+        /// <param name="path">The path to locate the save data from.</param>
+        /// <returns>The loaded data.</returns>
         public static GameData LoadData(string path)
         {
             GameData result;
@@ -74,18 +105,13 @@ namespace GameTrackerWPF
             return result;
         }
 
-        public static void RefreshGamesListBox(List<Game> games, ListBox listBox, TextBlock textBlock, Label toPlay, Label completed, ref GameData gameData)
-        {
-            listBox.Items.Clear();
-            foreach (Game g in games)
-                listBox.Items.Add(g);
-
-            toPlay.Content = gameData.GamesToPlay.Count;
-            completed.Content = gameData.CompletedGames.Count;
-
-            UpdateCompleteGameButton(textBlock, gameData);
-        }
-
+        /// <summary>
+        /// Remove a game from a list.
+        /// </summary>
+        /// <param name="game">The game to remove.</param>
+        /// <param name="listBox">The list box to update.</param>
+        /// <param name="textBlock">The text block to update for the Complete Game button.</param>
+        /// <param name="gameData">A reference to the game data.</param>
         public static void RemoveGame(Game game, ListBox listBox, TextBlock textBlock, ref GameData gameData)
         {
             gameData.GamesToPlay.Remove(game);
@@ -93,6 +119,11 @@ namespace GameTrackerWPF
             UpdateCompleteGameButton(textBlock, gameData);
         }
 
+        /// <summary>
+        /// Save the application information.
+        /// </summary>
+        /// <param name="path">The path to save the data in.</param>
+        /// <param name="gameData">The game data to serialize.</param>
         public static void SaveData(string path, GameData gameData)
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -103,6 +134,12 @@ namespace GameTrackerWPF
             }
         }
 
+        /// <summary>
+        /// Swap two game's places in a list.
+        /// </summary>
+        /// <param name="games">The list to reorder.</param>
+        /// <param name="index1">The first game's location.</param>
+        /// <param name="index2">The second game's location.</param>
         public static void Swap(ref List<Game> games, int index1, int index2)
         {
             Game g1 = games[index1];
@@ -123,6 +160,11 @@ namespace GameTrackerWPF
             games[index2] = g1;
         }
 
+        /// <summary>
+        /// Update the complete button text.
+        /// </summary>
+        /// <param name="textBlock">The text to update.</param>
+        /// <param name="gameData">The game data to get the game from.</param>
         public static void UpdateCompleteGameButton(TextBlock textBlock, GameData gameData)
         {
             try
