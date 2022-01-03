@@ -5,15 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GameTrackerWPF"
         mc:Ignorable="d"
-        Title="Add a Game" Height="199.871" Width="325.707" Loaded="Window_Loaded">
+        Title="Add a Game" Height="224.274" Width="325.707" Loaded="Window_Loaded">
     <Grid>
         <Label Content="Game Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="298" Height="30"/>
         <TextBox Name="GameNameTextBox" HorizontalAlignment="Left" Height="29" Margin="10,40,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="298"/>
         <Label Content="Priority" HorizontalAlignment="Left" Margin="10,74,0,0" VerticalAlignment="Top" Width="212" Height="30"/>
         <Label Name="PrioritySliderValue" Content="1" HorizontalAlignment="Left" Margin="222,74,0,0" VerticalAlignment="Top" Width="86" Height="30"/>
-        <Button Name="AddGameButton" Content="Add Game" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top" Width="137" Height="26" IsDefault="True" Click="AddGameButton_Click"/>
-        <Button Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="171,133,0,0" VerticalAlignment="Top" Width="137" Height="26" IsCancel="True" />
+        <Button Name="AddGameButton" Content="Add Game" HorizontalAlignment="Left" Margin="10,157,0,0" VerticalAlignment="Top" Width="137" Height="26" IsDefault="True" Click="AddGameButton_Click"/>
+        <Button Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="171,157,0,0" VerticalAlignment="Top" Width="137" Height="26" IsCancel="True" />
         <Slider Name="PrioritySlider" HorizontalAlignment="Left" VerticalAlignment="Top" Width="298" Height="24" Margin="10,104,0,0" ValueChanged="PrioritySlider_ValueChanged" />
+        <CheckBox Name="Owned" Content="Owned" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top" Height="17" Width="137"/>
+        <CheckBox Name="Released" Content="Released" HorizontalAlignment="Left" Margin="171,133,0,0" VerticalAlignment="Top" Height="17" Width="137"/>
 
     </Grid>
 </Window>

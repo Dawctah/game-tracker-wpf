@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameInformation
 {
@@ -10,7 +6,10 @@ namespace GameInformation
     public class Game
     {
         private int priority;
+
         public string Name { get; set; }
+
+        public int Index { get; set; }
 
         public int Priority
         {
@@ -23,12 +22,28 @@ namespace GameInformation
             }
         }
 
+        public bool Released { get; set; }
+        public bool Owned { get; set; }
+
         public override string ToString()
         {
+            string result = Name;
             if (Priority > 0)
-                return Name + ", Priority: " + Priority;
-            else
-                return Name;
+                result += ", Priority: " + Priority;
+
+            if (!Owned)
+                result += " (Unowned)";
+
+            if (!Released)
+                result += " (Unreleased)";
+
+            return result;
+        }
+
+        public Game()
+        {
+            Owned = true;
+            Released = true;
         }
     }
 }
