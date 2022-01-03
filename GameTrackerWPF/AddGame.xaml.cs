@@ -23,6 +23,9 @@ namespace GameTrackerWPF
         private Game game;
         private GameData gameData;
         private int defaultSliderVal;
+        private bool priorityChanged = false;
+
+        private bool Updating => AddGameButton.Content.ToString().Contains("Update");
 
         public AddGame(Game game, GameData gameData, int defaultSliderVal)
         {
@@ -54,6 +57,9 @@ namespace GameTrackerWPF
         private void PrioritySlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             PrioritySliderValue.Content = (int)PrioritySlider.Value;
+
+            if (Updating)
+                priorityChanged = true;
         }
 
         private void AddGameButton_Click(object sender, RoutedEventArgs e)
@@ -77,6 +83,15 @@ namespace GameTrackerWPF
         {
             game.Name = GameNameTextBox.Text;
             game.Priority = (int)PrioritySlider.Value;
+            if (priorityChanged)
+            {
+                if (game.Priority < game.Index)
+                    game.Index = game.Priority - 1;
+                else
+                    game.Index = game.Priority + 1;
+            }
+            else if (game.Priority != 10)
+                game.Index = game.Priority;
 
             game.Owned = (bool)Owned.IsChecked;
 

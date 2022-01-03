@@ -141,7 +141,13 @@ namespace GameTrackerWPF
 
         public static List<Game> Sort(List<Game> games)
         {
+            // Sort by index, since the new index should be set.
             games.Sort((g1, g2) => g1.Index.CompareTo(g2.Index));
+
+            // Reset the game's indexes to remove any potential doubles.
+            for (int k = 0; k < games.Count; k++)
+                games[k].Index = k + 1;
+
             return games;
         }
 
