@@ -30,7 +30,7 @@ namespace GameInformation
             if (Priority > 0)
                 result += ", Priority: " + Priority;
 
-            if (!Owned)
+            if (Priority != 0 && !Owned)
                 result += " (Unowned)";
 
 #if DEBUG
