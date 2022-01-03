@@ -22,7 +22,6 @@ namespace GameInformation
             }
         }
 
-        public bool Released { get; set; }
         public bool Owned { get; set; }
 
         public override string ToString()
@@ -34,9 +33,6 @@ namespace GameInformation
             if (!Owned)
                 result += " (Unowned)";
 
-            if (!Released)
-                result += " (Unreleased)";
-
 #if DEBUG
             result += " INDEX: " + Index;
 #endif
@@ -47,7 +43,6 @@ namespace GameInformation
         public Game()
         {
             Owned = true;
-            Released = true;
         }
     }
 }

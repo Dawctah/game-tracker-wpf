@@ -44,7 +44,6 @@ namespace GameTrackerWPF
             GameNameTextBox.Text = game.Name;
 
             Owned.IsChecked = game.Owned;
-            Released.IsChecked = game.Owned;
 
             if (game.Name != null)
                 AddGameButton.Content = "Update Game";
@@ -80,7 +79,6 @@ namespace GameTrackerWPF
             game.Priority = (int)PrioritySlider.Value;
 
             game.Owned = (bool)Owned.IsChecked;
-            game.Released = (bool)Released.IsChecked;
 
             DialogResult = true;
         }
