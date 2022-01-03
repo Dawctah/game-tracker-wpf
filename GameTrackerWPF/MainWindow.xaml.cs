@@ -62,6 +62,7 @@ namespace GameTrackerWPF
             if (sliderValue > 10)
                 sliderValue = 10;
 
+            game.Index = gameData.GamesToPlay.Count + 1;
             AddGame addGame = new AddGame(game, gameData, sliderValue);
 
             addGame.ShowDialog();
@@ -81,6 +82,7 @@ namespace GameTrackerWPF
             for (int k = 0; k < gameData.GamesToPlay.Count; k++)
             {
                 gameData.GamesToPlay[k].Priority = k + 1;
+                gameData.GamesToPlay[k].Index = k + 1;
             }
 
             RefreshGamesListBox(gameData.GamesToPlay, GamesListBox);
@@ -125,10 +127,13 @@ namespace GameTrackerWPF
                 if (gameData.GamesToPlay.Count != 0)
                 {
                     gameData.GamesToPlay[0].Priority = 1;
+                    gameData.GamesToPlay[0].Index = 1;
 
                     // Adjust the priority of all following games.
                     for (int k = 1; k < gameData.GamesToPlay.Count; k++)
                     {
+                        gameData.GamesToPlay[k].Index--;
+
                         // If the priorities are not in order, don't adjust the priority.
                         if (gameData.GamesToPlay[k].Priority == gameData.GamesToPlay[k - 1].Priority + 2)
                             gameData.GamesToPlay[k].Priority--;
@@ -181,7 +186,7 @@ namespace GameTrackerWPF
                 // Update the game.
                 GamesListBox.Items[placement] = selection;
 
-                gameData.GamesToPlay.Sort((g1, g2) => g1.Priority.CompareTo(g2.Priority));
+                gameData.GamesToPlay = Utility.Sort(gameData.GamesToPlay);
                 RefreshGamesListBox(gameData.GamesToPlay, GamesListBox);
             }
         }

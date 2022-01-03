@@ -37,6 +37,10 @@ namespace GameInformation
             if (!Released)
                 result += " (Unreleased)";
 
+#if DEBUG
+            result += " INDEX: " + Index;
+#endif
+
             return result;
         }
 

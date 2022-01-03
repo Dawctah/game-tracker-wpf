@@ -32,7 +32,7 @@ namespace GameTrackerWPF
         public static void AddGame(Game game, ref GameData gameData)
         {
             gameData.GamesToPlay.Add(game);
-            gameData.GamesToPlay.Sort((g1, g2) => g1.Priority.CompareTo(g2.Priority));
+            gameData.GamesToPlay = Sort(gameData.GamesToPlay);
         }
 
         /// <summary>
@@ -50,8 +50,7 @@ namespace GameTrackerWPF
                 {
                     if (k != 0 && k != games.Count - 1)
                     {
-                        if (up)
-                            Swap(ref games, k, k - 1);
+                        if (up)Swap(ref games, k, k - 1);
                         else
                             Swap(ref games, k, k + 1);
                     }
@@ -116,6 +115,12 @@ namespace GameTrackerWPF
         {
             gameData.GamesToPlay.Remove(game);
             listBox.Items.Remove(game);
+
+            for (int k = 0; k < gameData.GamesToPlay.Count; k++)
+            {
+                gameData.GamesToPlay[k].Index = k + 1;
+            }
+
             UpdateCompleteGameButton(textBlock, gameData);
         }
 
@@ -134,6 +139,12 @@ namespace GameTrackerWPF
             }
         }
 
+        public static List<Game> Sort(List<Game> games)
+        {
+            games.Sort((g1, g2) => g1.Index.CompareTo(g2.Index));
+            return games;
+        }
+
         /// <summary>
         /// Swap two game's places in a list.
         /// </summary>
@@ -144,6 +155,10 @@ namespace GameTrackerWPF
         {
             Game g1 = games[index1];
             Game g2 = games[index2];
+
+            int game1Index = g1.Index;
+            g1.Index = g2.Index;
+            g2.Index = game1Index;
 
             if (g1.Priority > g2.Priority)
             {
