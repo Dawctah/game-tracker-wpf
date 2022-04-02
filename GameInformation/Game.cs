@@ -24,6 +24,8 @@ namespace GameInformation
 
         public bool Owned { get; set; }
 
+        public int HoursToBeatAvg { get; set; }
+
         public override string ToString()
         {
             string result = Name;

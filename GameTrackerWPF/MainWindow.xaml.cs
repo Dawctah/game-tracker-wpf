@@ -287,6 +287,15 @@ namespace GameTrackerWPF
             {
                 BumpUpButton.Visibility = Visibility.Visible;
                 BumpDownButton.Visibility = Visibility.Visible;
+
+                if ((GamesListBox.SelectedItem as Game).HoursToBeatAvg != 0)
+                {
+                    HowLongToBeat.Text = $"{(GamesListBox.SelectedItem as Game).HoursToBeatAvg} hours to beat.";
+                }
+                else
+                {
+                    HowLongToBeat.Text = string.Empty;
+                }
             }
         }
     }

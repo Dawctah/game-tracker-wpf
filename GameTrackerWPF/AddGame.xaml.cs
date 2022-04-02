@@ -81,21 +81,30 @@ namespace GameTrackerWPF
 
         private void Complete()
         {
-            game.Name = GameNameTextBox.Text;
-            game.Priority = (int)PrioritySlider.Value;
-            if (priorityChanged)
+            try
             {
-                if (game.Priority < game.Index)
-                    game.Index = game.Priority - 1;
-                else
-                    game.Index = game.Priority + 1;
+                game.Name = GameNameTextBox.Text;
+                game.Priority = (int)PrioritySlider.Value;
+                if (priorityChanged)
+                {
+                    if (game.Priority < game.Index)
+                        game.Index = game.Priority - 1;
+                    else
+                        game.Index = game.Priority + 1;
+                }
+                else if (game.Priority != 10)
+                    game.Index = game.Priority;
+
+                game.Owned = (bool)Owned.IsChecked;
+
+                game.HoursToBeatAvg = int.Parse(Hours.Text);
+
+                DialogResult = true;
             }
-            else if (game.Priority != 10)
-                game.Index = game.Priority;
-
-            game.Owned = (bool)Owned.IsChecked;
-
-            DialogResult = true;
+            catch (FormatException)
+            {
+                Console.WriteLine("Game Invalid");
+            }
         }
     }
 }
