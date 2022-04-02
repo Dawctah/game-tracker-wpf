@@ -27,6 +27,6 @@
         <TextBlock Name="BackupFeedbackLabel" TextWrapping="WrapWithOverflow" HorizontalAlignment="Left" Margin="358,297,0,0" VerticalAlignment="Top" Width="142" Height="44"/>
         <Button x:Name="BumpUpButton" Content="^" HorizontalAlignment="Left" Margin="320,74,0,0" VerticalAlignment="Top" Width="33" Height="17" Visibility="Visible" Click="BumpUpButton_Click"/>
         <Button x:Name="BumpDownButton" Content="v" HorizontalAlignment="Left" Margin="320,91,0,0" VerticalAlignment="Top" Width="33" Height="17" Visibility="Visible" Click="BumpDownButton_Click"/>
-        <TextBlock x:Name="HowLongToBeat" HorizontalAlignment="Left" Margin="358,254,0,0" Text="" VerticalAlignment="Top" Height="38" Width="142" TextWrapping="WrapWithOverflow"/>
+        <TextBlock x:Name="HowLongToBeat" HorizontalAlignment="Left" Margin="358,176,0,0" Text="" VerticalAlignment="Top" Height="29" Width="142" TextWrapping="WrapWithOverflow"/>
     </Grid>
 </Window>
