@@ -2,10 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace GameTrackerWPF
@@ -20,6 +17,7 @@ namespace GameTrackerWPF
         /// <param name="gameData">The game data to alter.</param>
         public static void AddCompleteGame(ListBox listBox, Game game, ref GameData gameData)
         {
+            game.DateTimeCompleted = DateTime.Now;
             listBox.Items.Add(game);
             gameData.CompletedGames.Add(game);
         }

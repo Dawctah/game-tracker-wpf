@@ -97,7 +97,8 @@ namespace GameTrackerWPF
 
                 game.Owned = (bool)Owned.IsChecked;
 
-                game.HoursToBeatAvg = int.Parse(Hours.Text);
+                if (Hours.Text != string.Empty)
+                    game.HoursToBeatAvg = int.Parse(Hours.Text);
 
                 DialogResult = true;
             }

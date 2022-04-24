@@ -11,6 +11,8 @@ namespace GameInformation
 
         public int Index { get; set; }
 
+        public DateTime DateTimeCompleted { get; set; }
+
         public int Priority
         {
             get => priority;
@@ -34,6 +36,11 @@ namespace GameInformation
 
             if (Priority != 0 && !Owned)
                 result += " (Unowned)";
+
+            if (DateTimeCompleted != new DateTime())
+            {
+                result += $" {DateTimeCompleted.Year}/{DateTimeCompleted.Month}/{DateTimeCompleted.Day}";
+            }
 
 #if DEBUG
             result += " INDEX: " + Index;
