@@ -1,0 +1,32 @@
+﻿<Window x:Class="Vulpix.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Vulpix"
+        mc:Ignorable="d"
+        Title="Vulpix - Game Tracker" Height="450" Width="982.642" Loaded="Window_Loaded" Closing="Window_Closing">
+    <Grid>
+        <Label Content="Games to Play:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="262" Height="29"></Label>
+        <Label Name="ToPlayCount" Content="9999" HorizontalAlignment="Left" Margin="272,10,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Width="43" Height="29"></Label>
+        <Label Name="CompletedCount" Content="9999" HorizontalAlignment="Left" Margin="914,10,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Width="43" Height="29"/>
+        <ListBox x:Name="GamesListBox" HorizontalAlignment="Left" Height="370" Margin="10,39,0,0" VerticalAlignment="Top" Width="305" MouseDoubleClick="GamesListBox_MouseDoubleClick" SelectionChanged="GamesListBox_SelectionChanged"/>
+        <ListBox x:Name="CompletedListBox" HorizontalAlignment="Left" Height="369" Margin="652,40,0,0" VerticalAlignment="Top" Width="305"/>
+        <Button Name="AddGameButton" Content="Add Game" HorizontalAlignment="Left" Margin="358,74,0,0" VerticalAlignment="Top" Width="142" Height="29" Click="AddGameButton_Click"/>
+        <Button Name="RemoveGameButton" Content="Remove Selected Game" HorizontalAlignment="Left" Margin="358,108,0,0" VerticalAlignment="Top" Width="142" Height="29" Click="RemoveGameButton_Click" />
+        <Button Name="CompleteButton" HorizontalAlignment="Left" Margin="358,210,0,0" VerticalAlignment="Top" Width="142" Height="39" Click="CompleteButton_Click">
+            <TextBlock Margin="0,0,0,0" Name="CompleteTextBlock" HorizontalAlignment="Left" VerticalAlignment="Top" Width="132" Height="33" TextWrapping="WrapWithOverflow" TextAlignment="Center"/>
+        </Button>
+        <Button Name="CreateBackupButton" Content="Create Backup" HorizontalAlignment="Left" Margin="358,346,0,0" VerticalAlignment="Top" Width="142" Height="29" Click="CreateBackupButton_Click"/>
+        <Label Content="Games Completed Through this Program:" HorizontalAlignment="Left" Margin="652,10,0,0" VerticalAlignment="Top" Width="262" Height="29"/>
+        <Button x:Name="ClearDataButton" Content="Clear Data" HorizontalAlignment="Left" Margin="358,380,0,0" VerticalAlignment="Top" Width="142" Height="29" Click="ClearDataButton_Click" />
+        <Button x:Name="AutoSetPrio" Content="Auto-set Priorities" HorizontalAlignment="Left" Margin="358,142,0,0" VerticalAlignment="Top" Width="142" Height="29" Click="AutoSetPrio_Click" />
+        <TextBlock HorizontalAlignment="Left" Margin="505,129,0,0" Text="Automatically set PRIORITY for all games from 1 to 20 in order" VerticalAlignment="Top" Height="59" Width="142" TextWrapping="WrapWithOverflow"/>
+        <Button x:Name="OpenBackupsFolder" Content="Open Backups Folder" HorizontalAlignment="Left" Margin="505,346,0,0" VerticalAlignment="Top" Width="142" Height="29" Click="OpenBackupsFolder_Click"/>
+        <TextBox Name="GamesSearchBox" HorizontalAlignment="Left" Height="29" Margin="320,40,0,0" TextWrapping="Wrap" Text="Search games..." VerticalAlignment="Top" VerticalContentAlignment="Center" Width="327" KeyUp="GamesSearchBox_KeyUp" GotFocus="GamesSearchBox_GotFocus" LostFocus="GamesSearchBox_LostFocus"/>
+        <TextBlock Name="BackupFeedbackLabel" TextWrapping="WrapWithOverflow" HorizontalAlignment="Left" Margin="358,297,0,0" VerticalAlignment="Top" Width="142" Height="44"/>
+        <Button x:Name="BumpUpButton" Content="^" HorizontalAlignment="Left" Margin="320,74,0,0" VerticalAlignment="Top" Width="33" Height="17" Visibility="Visible" Click="BumpUpButton_Click"/>
+        <Button x:Name="BumpDownButton" Content="v" HorizontalAlignment="Left" Margin="320,91,0,0" VerticalAlignment="Top" Width="33" Height="17" Visibility="Visible" Click="BumpDownButton_Click"/>
+        <TextBlock x:Name="HowLongToBeat" HorizontalAlignment="Left" Margin="358,176,0,0" Text="" VerticalAlignment="Top" Height="29" Width="142" TextWrapping="WrapWithOverflow"/>
+    </Grid>
+</Window>
