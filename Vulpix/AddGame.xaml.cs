@@ -64,6 +64,11 @@ namespace Vulpix
             GameNameTextBox.Text = game.Name;
             Owned.IsChecked = game.Owned;
 
+            if (game.HoursToBeatAvg > 0)
+            {
+                Hours.Text = game.HoursToBeatAvg.ToString();
+            }
+
             if (updating)
             {
                 Title = "Vulpix - Update Game";

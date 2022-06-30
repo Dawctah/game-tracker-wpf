@@ -161,6 +161,8 @@ namespace Vulpix
 #pragma warning disable CA2245 // Do not assign a property to itself. Refreshing priority.
                     GameData = GameData;
 #pragma warning restore CA2245 // Do not assign a property to itself
+
+                    GamesListBox.SelectedItem = selection;
                 }
             }
         }
